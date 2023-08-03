@@ -30,6 +30,7 @@
     "eqnull"        : true,
     "es5"           : false,
     "esnext"        : false,
+    "esversion"     : 6,
 
 
     "evil"          : false,

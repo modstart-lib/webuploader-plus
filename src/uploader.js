@@ -28,7 +28,10 @@ define([
 
     // default Options
     // widgets中有相应扩展
-    Uploader.options = {};
+    Uploader.options = {
+        // 是否开启调试模式
+        debug: false,
+    };
     Mediator.installTo( Uploader.prototype );
 
     // 批量添加纯命令式方法。
