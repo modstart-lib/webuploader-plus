@@ -164,10 +164,10 @@ define([
                 this._delFile(file);
                 file.destroy();
                 this.stats.numOfDeleted++;
-                
+
             }
         },
-		
+
         _fileAdded: function( file ) {
             var me = this,
                 existing = this._map[ file.id ];
@@ -179,12 +179,14 @@ define([
                     me._onFileStatusChange( cur, pre );
                 });
             }
+
+            file.setStatus( STATUS.QUEUED );
         },
 
         _delFile : function(file){
             for(var i = this._queue.length - 1 ; i >= 0 ; i-- ){
                 if(this._queue[i] == file){
-                    this._queue.splice(i,1); 
+                    this._queue.splice(i,1);
                     break;
                 }
             }
