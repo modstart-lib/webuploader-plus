@@ -2274,7 +2274,18 @@
     
                 file = this.request( 'get-file', file );
     
-                if ( !opts || !opts.enable || !~'image/jpeg,image/jpg,image/png'.indexOf( file.type ) || file._compressed ) {
+                if(file._widgetImageData){
+                    return;
+                }
+    
+                var data = {
+                    processed: false,
+                    success: false,
+                    originalSize: file.size,
+                };
+    
+                if ( !opts || !opts.enable || !~'image/jpeg,image/jpg,image/png'.indexOf( file.type ) ) {
+                    file._widgetImageData = data;
                     return;
                 }
     
@@ -2293,10 +2304,13 @@
                     file.source.size = compressedBlob.size;
                     file.size = compressedBlob.size;
                     file.trigger( 'resize', compressedBlob.size, oldSize );
-                    file._compressed = true;
+                    data.processed = true;
+                    data.success = true;
+                    file._widgetImageData = data;
                     deferred.resolve();
                 }).catch(function (error) {
-                    console.error('webuploader.compress.error',error)
+                    console.error('webuploader.compress.error',error);
+                    data.processed = true;
                     deferred.resolve();
                 });
     
