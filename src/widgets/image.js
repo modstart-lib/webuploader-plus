@@ -213,7 +213,7 @@ define([
             opts = $.extend({}, opts );
             deferred = Base.Deferred();
 
-            console.log('image.beforeSendFile',opts, file.source.source);
+            //console.log('image.beforeSendFile',opts, file.source.source);
 
             imageCompression(file.source.source,{
                 maxSizeMB: opts.maxSize/1024/1024,
