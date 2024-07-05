@@ -151,7 +151,7 @@
             swf: '../../dist/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: '../../server/fileupload.php',
+            server: '../../server/handle.php',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -187,7 +187,7 @@
         });
 
         uploader.on('dialogOpen', function() {
-            console.log('here');
+            console.log('dialogOpen');
         });
 
         // uploader.on('filesQueued', function() {

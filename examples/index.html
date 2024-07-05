@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebUploader Plus 演示</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <script src="./jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $(document).on('click', '[target="editor_iframe"]', function () {
+                $('[data-github-source]').attr('href', 'https://github.com/modstart-lib/webuploader-plus/blob/master/examples/' + $(this).attr('href'));
+                $('[data-gitee-source]').attr('href', 'https://gitee.com/modstart-lib/webuploader-plus/blob/master/examples/' + $(this).attr('href'));
+            });
+        });
+    </script>
+    <script>var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?f84f35a44b5cc5c0b10c3fabdf0f322b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();</script>
+</head>
+<body>
+<div class="demo-header">
+    <div class="link">
+        <a data-github-source
+           href="https://github.com/modstart-lib/webuploader-plus/blob/master/examples/" target="_blank">Github源码</a>
+        <a data-gitee-source href="https://gitee.com/modstart-lib/webuploader-plus/blob/master/examples/"
+           target="_blank">Gitee源码</a>
+    </div>
+    <h1>WebUploader Plus 功能演示</h1>
+</div>
+<div class="demo-menu">
+    <h3>基础示例</h3>
+    <ul>
+        <li>
+            <a href="image-upload/index.html" target="editor_iframe">图片上传</a><br/>
+            提供多图片上传功能
+        </li>
+        <li>
+            <a href="md5-demo/index.html" target="editor_iframe">文件MD5计算</a><br/>
+            计算文件MD5值
+        </li>
+        <li>
+            <a href="cropper/index.html" target="editor_iframe">图片裁剪上传</a><br/>
+            提供图片的裁剪上传功能
+        </li>
+        <li>
+            <a href="requirejs/index.html" target="editor_iframe">requirejs</a><br/>
+            使用 requirejs 加载
+        </li>
+    </ul>
+</div>
+<div class="demo-iframe">
+    <div class="demo-iframe-container">
+        <iframe name="editor_iframe" src="./image-upload/index.html"></iframe>
+    </div>
+</div>
+</body>
+</html>

@@ -5,7 +5,7 @@ requirejs.config({
     }
 });
 
-require([ 'webuploader.flashonly' ], function( WebUploader ) {
+require([ 'webuploader' ], function( WebUploader ) {
     // 当domReady的时候开始初始化
     $(function() {
         var $wrap = $('#uploader'),
@@ -73,7 +73,7 @@ require([ 'webuploader.flashonly' ], function( WebUploader ) {
             chunked: true,
             // runtimeOrder: 'flash',
             sendAsBinary: true,
-            server: '../../server/fileupload.php',
+            server: '../../server/handle.php',
             // server: 'http://liaoxuezhi.fe.baidu.com/webupload/fileupload.php',
             // server: 'http://www.2betop.net/fileupload.php',
             fileNumLimit: 300,
