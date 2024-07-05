@@ -65,7 +65,7 @@ define([
          * @for Uploader
          * @description 上传并发数。允许同时最大上传进程数。
          */
-        threads: 3,
+        threads: 1,
 
 
         /**
@@ -243,7 +243,7 @@ define([
                         file.setStatus( Status.PROGRESS );
                     });
 
-                    
+
                 } else if (file.getStatus() !== Status.PROGRESS) {
                     file.setStatus( Status.QUEUED );
                 }
@@ -272,7 +272,7 @@ define([
                     if (v.waiting) {
                         return;
                     }
-                    
+
                     // 文件 prepare 完后，如果暂停了，这个时候只会把文件插入 pool, 而不会创建 tranport，
                     v.transport ? v.transport.send() : me._doSend(v);
                 }
@@ -540,7 +540,11 @@ define([
                         return null;
                     }
 
-                    act = CuteFile( file, opts.chunked ? opts.chunkSize : 0 );
+                    if (opts.customUpload) {
+                        act = CuteFile(file, 0);
+                    } else {
+                        act = CuteFile(file, opts.chunked ? opts.chunkSize : 0);
+                    }
                     me.stack.push(act);
                     return act.shift();
                 };
@@ -754,9 +758,13 @@ define([
             requestAccept = function( reject ) {
                 var fn;
 
-                ret = tr.getResponseAsJson() || {};
-                ret._raw = tr.getResponse();
-                ret._headers = tr.getResponseHeaders();
+                if( opts.customUpload ){
+                    ret = tr.customUploadResponse;
+                }else{
+                    ret = tr.getResponseAsJson() || {};
+                    ret._raw = tr.getResponse();
+                    ret._headers = tr.getResponseHeaders();
+                }
                 block.response = ret;
                 fn = function( value ) {
                     reject = value;
@@ -772,9 +780,9 @@ define([
 
             // 尝试重试，然后广播文件上传出错。
             tr.on( 'error', function( type, flag ) {
-                // 在 runtime/html5/transport.js 上为 type 加上了状态码，形式：type|status|text（如：http-403-Forbidden）
+                // 在 runtime/html5/transport.js 上为 type 加上了状态码，形式：type|status|text（如：http|403|Forbidden）
                 // 这里把状态码解释出来，并还原后面代码所依赖的 type 变量
-                var typeArr = type.split( '|' ), status, statusText;  
+                var typeArr = type.split( '|' ), status, statusText;
                 type = typeArr[0];
                 status = parseFloat( typeArr[1] ),
                 statusText = typeArr[2];

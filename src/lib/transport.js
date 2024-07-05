@@ -36,7 +36,9 @@ define([
         timeout: 2 * 60 * 1000,    // 2分钟
         formData: {},
         headers: {},
-        sendAsBinary: false
+        sendAsBinary: false,
+
+        customUploadResponse: null,
     };
 
     $.extend( Transport.prototype, {
@@ -78,8 +80,25 @@ define([
         },
 
         send: function( method ) {
-            this.exec( 'send', method );
-            this._timeout();
+            var me = this,
+                opts = me.options;
+            if( opts.customUpload ){
+                opts.customUpload(me._blob, {
+                    onProgress: function (file, percentage) {
+                        me.trigger('progress', percentage);
+                    },
+                    onSuccess: function (file, res) {
+                        me.customUploadResponse = res;
+                        me.trigger('load');
+                    },
+                    onError: function (file, error) {
+                        me.trigger('error', error, true);
+                    }
+                });
+            }else{
+                this.exec( 'send', method );
+                this._timeout();
+            }
         },
 
         abort: function() {
