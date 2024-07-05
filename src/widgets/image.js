@@ -213,6 +213,8 @@ define([
             opts = $.extend({}, opts );
             deferred = Base.Deferred();
 
+            console.log('image.beforeSendFile',opts, file.source.source);
+
             imageCompression(file.source.source,{
                 maxSizeMB: opts.maxSize/1024/1024,
                 maxWidthOrHeight: opts.maxWidthOrHeight,
@@ -230,7 +232,7 @@ define([
                 file._widgetImageData = data;
                 deferred.resolve();
             }).catch(function (error) {
-                console.error('webuploader.compress.error',error);
+                console.warn('webuploader.compress.error',error);
                 data.processed = true;
                 file._widgetImageData = data;
                 deferred.resolve();

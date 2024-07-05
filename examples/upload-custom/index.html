@@ -15,9 +15,28 @@
         <div id="uploadPicker"></div>
         <ul id="uploadList"></ul>
     </div>
+    <input type="file" accept="image/*" onchange="handleImageUpload(event);">
 </div>
 <script type="text/javascript" src="./../jquery.js"></script>
 <script type="text/javascript" src="../../dist/webuploader.js"></script>
 <script type="text/javascript" src="./upload.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"></script>
+
+<script>
+    window.handleImageUpload = function(event) {
+        const imageFile = event.target.files[0];
+          const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+          }
+          console.log(imageFile);
+          imageCompression(imageFile, options).then(compressedFile => {
+            console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+            console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+          }).catch(error => {
+            console.log(error.message);
+          });
+    };
+</script>
 </body>
 </html>

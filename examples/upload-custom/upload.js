@@ -5,7 +5,7 @@ $(function () {
         'before-send-file': 'beforeSendFile'
     }, {
         beforeBlockSend: function (block) {
-            console.log('beforeBlockSend', block, this.options.chunkUploaded)
+            console.log('beforeBlockSend', block)
             var task = new $.Deferred();
             setTimeout(task.resolve, 0);
             return $.when(task);
@@ -16,6 +16,7 @@ $(function () {
             var task = new $.Deferred();
             setTimeout(function () {
                 me.options.chunkUploaded = 0
+                file._initData = {'aaa': 'aaa'}
                 task.resolve()
             }, 0);
             return $.when(task);
@@ -34,33 +35,38 @@ $(function () {
         chunkRetry: 5,
         threads: 1,
         server: '../../server/handle.php',
+        compress:{
+            enable: true,
+            maxWidthOrHeight: 1000,
+            maxSize: 1000*1024
+        },
         // 需要立即上传文件
-        customUpload: function (file, option) {
+        customUpload: function (file, callback) {
             console.log('customUpload.upload', file);
             var i = 0;
             var tick = function () {
                 setTimeout(function () {
-                    if (Math.random() < 0.1) {
-                        option.onError(file, '错误了');
-                        return;
-                    }
+                    //if (Math.random() < 0.1) {
+                    //    callback.onError(file, '错误了');
+                    //    return;
+                    //}
                     if (i++ < 10) {
-                        option.onProgress(file, i / 10);
+                        callback.onProgress(file, i / 10);
                         tick();
                     } else {
                         const res = {
                             code: 0,
                             msg: 'ok',
                             data: {
+                                path: 'xxx/xxx/xxx.png',
+                                fullPath: 'xxx/xxx/xxx.png',
                                 data: {
                                     filename: 'aaa.png',
                                     size: 1000,
-                                    path: 'xxx/xxx/xxx.png',
-                                    fullPath: 'xxx/xxx/xxx.png',
                                 }
                             }
                         };
-                        option.onSuccess(file, res);
+                        callback.onSuccess(file, res);
                     }
                 }, 100);
             };

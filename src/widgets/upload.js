@@ -849,7 +849,7 @@ define([
             owner.trigger( 'uploadBeforeSend', block, data, headers );
 
             // 开始发送。
-            tr.appendBlob( opts.fileVal, block.blob, file.name );
+            tr.appendBlob( opts.fileVal, block.blob, file.name, block);
             tr.append( data );
             tr.setRequestHeader( headers );
             tr.send();

@@ -15,6 +15,7 @@ define([
         opts = me.options = $.extend( true, {}, Transport.options, opts || {} );
         RuntimeClient.call( this, 'Transport' );
 
+        this._block = null;
         this._blob = null;
         this._formData = opts.formData || {};
         this._headers = opts.headers || {};
@@ -44,7 +45,7 @@ define([
     $.extend( Transport.prototype, {
 
         // 添加Blob, 只能添加一次，最后一次有效。
-        appendBlob: function( key, blob, filename ) {
+        appendBlob: function( key, blob, filename, block) {
             var me = this,
                 opts = me.options;
 
@@ -57,6 +58,7 @@ define([
                 me.exec('init');
             });
 
+            me._block = block;
             me._blob = blob;
             opts.fileVal = key || opts.fileVal;
             opts.filename = filename || opts.filename;
@@ -83,7 +85,7 @@ define([
             var me = this,
                 opts = me.options;
             if( opts.customUpload ){
-                opts.customUpload(me._blob, {
+                opts.customUpload(me._block, {
                     onProgress: function (file, percentage) {
                         me.trigger('progress', percentage);
                     },
