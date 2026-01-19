@@ -9,7 +9,7 @@
 ### 第一步，clone代码到本地
 
 ```shell
-git clone https://gitee.com/modstart-lib/webuploader-plus.git
+git clone https://github.com/modstart-lib/webuploader-plus.git
 ```
 
 ### 第三步，打包
