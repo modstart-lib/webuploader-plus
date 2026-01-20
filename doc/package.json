@@ -1,0 +1,21 @@
+{
+  "name": "ueditor-plus-designer-docs",
+  "version": "1.0.0",
+  "description": "UEditor Plus Designer 文档站点",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "keywords": [
+    "ueditor",
+    "designer",
+    "documentation"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

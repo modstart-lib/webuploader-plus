@@ -1,0 +1,35 @@
+<svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <path d="M45,120 C25,120 20,90 40,80 C35,50 70,40 90,50 C110,30 155,40 160,70 C185,75 185,115 160,125 C165,150 50,155 45,120 Z"
+          fill="none"
+          stroke="url(#cloudGrad)"
+          stroke-width="12"
+          stroke-linejoin="round" />
+
+    <path d="M70,80 V105 C70,120 100,120 100,105 V80"
+          fill="none"
+          stroke="#1a365d"
+          stroke-width="14"
+          stroke-linecap="round" />
+
+    <path d="M100,80 C130,80 135,115 105,118"
+          fill="none"
+          stroke="#2563eb"
+          stroke-width="14"
+          stroke-linecap="round" />
+
+    <g stroke="#fbbf24" stroke-width="8" stroke-linecap="round">
+        <line x1="105" y1="100" x2="125" y2="100" />
+        <line x1="115" y1="90" x2="115" y2="110" />
+    </g>
+
+    <text x="100" y="180" font-family="Segoe UI, Helvetica, sans-serif" font-size="12" font-weight="900" text-anchor="middle" fill="#1e293b">
+        UEDITOR PLUS DESIGNER
+    </text>
+</svg>

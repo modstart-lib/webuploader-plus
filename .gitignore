@@ -2,7 +2,6 @@
 .idea
 /pages
 /node_modules
-/doc
 server/*
 !server/preview.php
 !server/fileupload.php
