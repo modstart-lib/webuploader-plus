@@ -7,6 +7,5 @@ build_for_es5:
 
 build_all: build_for_es5
 	rm -rfv ./dist
-	rm -rfv ./dist-min
 	npm run build
 

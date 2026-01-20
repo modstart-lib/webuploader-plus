@@ -7,10 +7,11 @@
         "url": "https://github.com/modstart-lib/webuploader-plus.git"
     },
     "files": [
-        "dist-min/**/*",
+        "dist/**/*",
+        "LICENSE",
         "README.md"
     ],
-    "main": "dist-min/webuploader.js",
+    "main": "dist/webuploader.js",
     "keywords": [
         "chunk",
         "uploader",
@@ -18,7 +19,7 @@
         "flash"
     ],
     "scripts": {
-        "build": "grunt build"
+        "build": "grunt default"
     },
     "author": "fex-team",
     "license": "BSD",

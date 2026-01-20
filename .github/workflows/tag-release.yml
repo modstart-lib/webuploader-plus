@@ -45,8 +45,7 @@ jobs:
                   gh release create "$TAG_NAME" \
                     --title "Release $TAG_NAME" \
                     --generate-notes \
-                    dist.zip \
-                    dist-min.zip
+                    dist.zip
 
             - name: Authenticate to npm
               run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
